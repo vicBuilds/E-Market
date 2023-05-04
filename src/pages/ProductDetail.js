@@ -7,8 +7,10 @@ import { useLocation, useNavigate } from "react-router-dom";
 import AttachMoneyIcon from "@mui/icons-material/AttachMoney";
 import { Button } from "@mui/material";
 import AddShoppingCartIcon from "@mui/icons-material/AddShoppingCart";
-import { Add, Remove, EditAttributesOutlined, Edit } from "@mui/icons-material";
+import { Add, Remove, Edit } from "@mui/icons-material";
 import { useDispatch } from "react-redux";
+import { ToastContainer, toast } from "react-toastify";
+import "react-toastify/dist/ReactToastify.css";
 import { addProductToCart } from "../redux/cartSlice";
 
 const Container = styled.div`
@@ -89,11 +91,14 @@ const ProductDetail = () => {
     }
   };
 
+  const notify = (msg) => toast(msg);
+
   const addItemToCart = async () => {
     //console.log("Hello Data");
 
     await dispatch(addProductToCart({ ...productData, count: qty }));
-    navigate("/cart");
+    notify("Item Added to Cart");
+    //navigate("/cart");
   };
 
   const handleUpdateAProduct = () => {
@@ -160,6 +165,20 @@ const ProductDetail = () => {
           </ButtonCart>
         </RightSide>
       </ProductContainer>
+      <ToastContainer
+        position="top-right"
+        autoClose={5000}
+        hideProgressBar={false}
+        newestOnTop={false}
+        closeOnClick
+        rtl={false}
+        pauseOnFocusLoss
+        draggable
+        pauseOnHover
+        theme="light"
+      />
+
+      {/* <ToastContainer /> */}
     </Container>
   );
 };

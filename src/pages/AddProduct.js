@@ -5,6 +5,8 @@ import { addAProduct } from "../api";
 import { useDispatch } from "react-redux";
 import { addProduct } from "../redux/productSlice";
 import { Link, useNavigate } from "react-router-dom";
+import { ToastContainer, toast } from "react-toastify";
+import "react-toastify/dist/ReactToastify.css";
 
 const Container = styled.div`
   display: flex;
@@ -96,6 +98,7 @@ const AddProduct = () => {
 
     //console.log("Product added is ", productAdded);
     await dispatch(addProduct({ ...tempProd, id: new Date().getTime() }));
+    // toast("Product Added");
     navigate("/products");
   };
 
@@ -184,6 +187,18 @@ const AddProduct = () => {
           </ButtonSubmit>
         </Form>
       </FormContainer>
+      <ToastContainer
+        position="top-right"
+        autoClose={5000}
+        hideProgressBar={false}
+        newestOnTop={false}
+        closeOnClick
+        rtl={false}
+        pauseOnFocusLoss
+        draggable
+        pauseOnHover
+        theme="colored"
+      />
     </Container>
   );
 };

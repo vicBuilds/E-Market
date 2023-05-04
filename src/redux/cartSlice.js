@@ -36,7 +36,7 @@ export const cartSlice = createSlice({
           state.products.forEach((product) => {
             pricetemp += product.price * product.count;
           });
-          state.totalPrice = pricetemp;
+          state.totalPrice = pricetemp.toFixed(2);
         }
       });
       if (sameProductFlag) return;
@@ -47,7 +47,7 @@ export const cartSlice = createSlice({
       state.products.forEach((product) => {
         pricetemp += product.price * product.count;
       });
-      state.totalPrice = pricetemp;
+      state.totalPrice = pricetemp.toFixed(2);
       state.count += 1;
       //console.log("After State Products is at Cartslice ", state.products);
     },
@@ -61,7 +61,7 @@ export const cartSlice = createSlice({
       state.products.forEach((product) => {
         pricetemp += product.price * product.count;
       });
-      state.totalPrice = pricetemp;
+      state.totalPrice = pricetemp.toFixed(2);
       state.count -= 1;
       //console.log("State Products is ", state.products);
     },

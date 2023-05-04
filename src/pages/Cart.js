@@ -5,7 +5,8 @@ import { removeProductFromCart } from "../redux/cartSlice";
 import Navbar from "../components/navbar";
 import { AttachMoneyOutlined, Delete, Money } from "@mui/icons-material";
 import { Button } from "@mui/material";
-import { useNavigate } from "react-router-dom";
+import { ToastContainer, toast } from "react-toastify";
+import "react-toastify/dist/ReactToastify.css";
 
 const Container = styled.div`
   background-color: #d1d1d1;
@@ -78,6 +79,7 @@ const Cart = () => {
   const handleRemove = (id) => {
     //console.log("Hello");
     dispatch(removeProductFromCart(id));
+    toast("Item removed from Cart");
   };
 
   return (
@@ -149,6 +151,18 @@ const Cart = () => {
           </Block>
         </PriceDetails>
       </PriceContainer>
+      <ToastContainer
+        position="top-right"
+        autoClose={5000}
+        hideProgressBar={false}
+        newestOnTop={false}
+        closeOnClick
+        rtl={false}
+        pauseOnFocusLoss
+        draggable
+        pauseOnHover
+        theme="light"
+      />
     </Container>
   );
 };
