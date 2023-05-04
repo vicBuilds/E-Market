@@ -40,7 +40,7 @@ const Products = () => {
   let productData = useSelector((state) => {
     return state.product.products;
   });
-  console.log("hello ", productData);
+  //console.log("hello ", productData);
   useEffect(() => {
     setDisplayproducts(productData);
   }, []);

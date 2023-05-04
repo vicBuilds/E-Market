@@ -25,7 +25,7 @@ export const cartSlice = createSlice({
     },
     addProductToCart: (state, action) => {
       //console.log("Data in Cart Redux is", action.payload);
-      console.log("before state is ", state.products);
+      //console.log("before state is ", state.products);
       let sameProductFlag = false;
 
       state.products.forEach((product) => {
@@ -41,7 +41,7 @@ export const cartSlice = createSlice({
       });
       if (sameProductFlag) return;
 
-      console.log("Some Problem");
+      //console.log("Some Problem");
       state.products.push(action.payload);
       let pricetemp = 0;
       state.products.forEach((product) => {

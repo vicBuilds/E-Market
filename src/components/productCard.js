@@ -1,4 +1,5 @@
-import { AttachMoneyOutlined } from "@mui/icons-material";
+import { AttachMoneyOutlined, Edit } from "@mui/icons-material";
+import { Button } from "@mui/material";
 import React from "react";
 import { useNavigate } from "react-router-dom";
 import styled from "styled-components";
@@ -48,6 +49,10 @@ const ProductCard = (props) => {
     navigate(`/product/${id}`, { state: props.product });
   };
 
+  const takeMeToEditPage = (e) => {
+    e.preventDefault();
+  };
+
   return (
     <Container
       onClick={(e) => {
@@ -62,6 +67,7 @@ const ProductCard = (props) => {
         {price}
       </TitleDescrip>
       <TitleDescrip>{title}</TitleDescrip>
+      <TitleDescrip></TitleDescrip>
     </Container>
   );
 };

@@ -12,16 +12,18 @@ export const productSlice = createSlice({
       state.products = action.payload;
     },
     addProduct: (state, action) => {
-      console.log("I am here from action", action.payload);
+      //console.log("I am here from action", action.payload);
       state.products.push(action.payload);
     },
-    updateAProduct: (state, action) => {
-      let { id, newProductDetail } = action.payload;
+    updateAProductInRedux: (state, action) => {
+      //let { id, newProductDetail } = action.payload;
+      let { id } = action.payload;
+      //console.log("Action.payload is ", action.payload);
       let newProdcuts = [];
       state.products.forEach((product) => {
         let temp = {};
         if (product.id === id) {
-          temp = { ...newProductDetail, id };
+          temp = { ...action.payload };
         } else {
           temp = { ...product };
         }
@@ -30,7 +32,7 @@ export const productSlice = createSlice({
       state.products = newProdcuts;
     },
     deleteAProduct: (state, action) => {
-      let id = action.payload;
+      //let id = action.payload;
       state.products = state.products.filter((product) => {
         return product.id !== action.payload.id;
       });
@@ -39,7 +41,11 @@ export const productSlice = createSlice({
 });
 
 // Action creators are generated for each case reducer function
-export const { createProductList, addProduct, updateAProduct, deleteAProduct } =
-  productSlice.actions;
+export const {
+  createProductList,
+  addProduct,
+  updateAProductInRedux,
+  deleteAProduct,
+} = productSlice.actions;
 
 export default productSlice.reducer;

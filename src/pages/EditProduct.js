@@ -1,10 +1,11 @@
 import React, { useState } from "react";
 import styled from "styled-components";
 import { Button } from "@mui/material";
-import { addAProduct } from "../api";
+import { updateAProduct } from "../api";
+import { updateAProductInRedux } from "../redux/productSlice";
 import { useDispatch } from "react-redux";
 import { addProduct } from "../redux/productSlice";
-import { Link, useNavigate } from "react-router-dom";
+import { Link, useLocation, useNavigate } from "react-router-dom";
 
 const Container = styled.div`
   display: flex;
@@ -55,26 +56,31 @@ const InputContainer = styled.div`
 `;
 
 const ButtonSubmit = styled(Button)`
+  margin-top: 20px;
   transition: all 0.9s ease;
   &&& {
     background-color: #32c99f;
     color: white;
-    margin-bottom: 20px;
   }
 `;
 
-const AddProduct = () => {
-  const [title, setTitle] = useState("");
-  const [description, setDescription] = useState("");
-  const [image, setImage] = useState("");
-  const [category, setCategory] = useState("");
-  const [price, setPrice] = useState("");
+const EditProduct = () => {
+  let data = useLocation();
+
+  data = data.state;
+  //console.log("Data at Edit Page is ", data);
+  const [title, setTitle] = useState(data.title);
+  const [description, setDescription] = useState(data.description);
+  const [image, setImage] = useState(data.image);
+  const [category, setCategory] = useState(data.category);
+  const [price, setPrice] = useState(data.price);
   const dispatch = useDispatch();
   const navigate = useNavigate();
 
   const handleSubmit = async (e) => {
     e.preventDefault();
     let tempProd = {
+      id: data.id,
       title,
       description,
       image,
@@ -82,20 +88,10 @@ const AddProduct = () => {
       image,
       price,
     };
-
-    //console.log("Temp Prod is ", tempProd);
-
-    // let productAdded = await addAProduct({
-    //   title,
-    //   description,
-    //   image,
-    //   category,
-    //   image,
-    //   price,
-    // });
+    dispatch(updateAProductInRedux(tempProd));
+    let updatedProduct = await updateAProduct(tempProd);
 
     //console.log("Product added is ", productAdded);
-    await dispatch(addProduct({ ...tempProd, id: new Date().getTime() }));
     navigate("/products");
   };
 
@@ -105,7 +101,7 @@ const AddProduct = () => {
         {/* <Link to={"/products"}>
           <h1>All Products</h1>
         </Link>  */}
-        <h1>ADD A PRODUCT</h1>
+        <h1>UPDATE A PRODUCT</h1>
       </Header>
       <FormContainer>
         <h1>PRODUCT DETAILS</h1>
@@ -173,14 +169,13 @@ const AddProduct = () => {
               }}
             ></Input>
           </InputContainer>
-          <ButtonSubmit type="submit">Submit</ButtonSubmit>
-          <div></div>
           <ButtonSubmit
+            type="submit"
             onClick={(e) => {
-              navigate("/products");
+              handleSubmit(e);
             }}
           >
-            Cancel
+            Update
           </ButtonSubmit>
         </Form>
       </FormContainer>
@@ -188,4 +183,4 @@ const AddProduct = () => {
   );
 };
 
-export default AddProduct;
+export default EditProduct;

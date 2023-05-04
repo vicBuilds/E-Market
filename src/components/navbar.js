@@ -1,6 +1,11 @@
-import { Add } from "@mui/icons-material";
-import { Avatar, Button } from "@mui/material";
+import {
+  Add,
+  ShoppingBagOutlined,
+  ShoppingCartOutlined,
+} from "@mui/icons-material";
+import { Avatar, Badge, Button } from "@mui/material";
 import React from "react";
+import { useSelector } from "react-redux";
 import { Link } from "react-router-dom";
 import styled from "styled-components";
 
@@ -21,7 +26,17 @@ const Logo = styled.div`
   justify-content: space-between;
 `;
 
+const badgeStyle = {
+  "& .MuiBadge-badge": {
+    color: "white",
+    backgroundColor: "red",
+  },
+};
+
 const Navbar = () => {
+  const Cart = useSelector((state) => {
+    return state.cart;
+  });
   return (
     <Container>
       <Logo>
@@ -44,7 +59,13 @@ const Navbar = () => {
         </Link>
       </Logo>
       <Link to="/cart">
-        <Avatar />
+        <Badge
+          sx={badgeStyle}
+          badgeContent={Cart.count}
+          style={{ color: "white" }}
+        >
+          <ShoppingCartOutlined />
+        </Badge>
       </Link>
     </Container>
   );

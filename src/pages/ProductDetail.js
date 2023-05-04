@@ -7,7 +7,7 @@ import { useLocation, useNavigate } from "react-router-dom";
 import AttachMoneyIcon from "@mui/icons-material/AttachMoney";
 import { Button } from "@mui/material";
 import AddShoppingCartIcon from "@mui/icons-material/AddShoppingCart";
-import { Add, Remove } from "@mui/icons-material";
+import { Add, Remove, EditAttributesOutlined, Edit } from "@mui/icons-material";
 import { useDispatch } from "react-redux";
 import { addProductToCart } from "../redux/cartSlice";
 
@@ -91,8 +91,13 @@ const ProductDetail = () => {
 
   const addItemToCart = async () => {
     //console.log("Hello Data");
+
     await dispatch(addProductToCart({ ...productData, count: qty }));
     navigate("/cart");
+  };
+
+  const handleUpdateAProduct = () => {
+    navigate("/editproduct", { state: productData });
   };
 
   //console.log(productData);
@@ -108,6 +113,14 @@ const ProductDetail = () => {
         <RightSide>
           <ItemHeader style={{ letterSpacing: "1px", color: "#736d6d" }}>
             {category.toUpperCase()}
+            <ButtonCart
+              style={{ marginLeft: "15px", backgroundColor: "red" }}
+              onClick={(e) => {
+                handleUpdateAProduct();
+              }}
+            >
+              <Edit />
+            </ButtonCart>
           </ItemHeader>
           <ItemHeader>Product Description</ItemHeader>
           <Description>{description}</Description>
@@ -136,6 +149,7 @@ const ProductDetail = () => {
               <Add />
             </Button>
           </ItemHeader>
+
           <ButtonCart
             onClick={() => {
               addItemToCart();

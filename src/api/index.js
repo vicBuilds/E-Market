@@ -34,6 +34,7 @@ export const deleteAProduct = async (id) => {
 };
 
 export const updateAProduct = async (productToBeAdded) => {
+  //console.log("Product to be updated is", productToBeAdded);
   try {
     let returnFromApiAfterUpdate = await fetch(
       `${ROOT_URL}/${productToBeAdded.id}`,
@@ -43,6 +44,7 @@ export const updateAProduct = async (productToBeAdded) => {
       }
     );
     returnFromApiAfterUpdate = await returnFromApiAfterUpdate.json();
+    //console.log("returnFromApiAfterUpdate is ", returnFromApiAfterUpdate);
     return returnFromApiAfterUpdate;
   } catch (err) {
     return err;

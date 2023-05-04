@@ -5,6 +5,7 @@ import { removeProductFromCart } from "../redux/cartSlice";
 import Navbar from "../components/navbar";
 import { AttachMoneyOutlined, Delete, Money } from "@mui/icons-material";
 import { Button } from "@mui/material";
+import { useNavigate } from "react-router-dom";
 
 const Container = styled.div`
   background-color: #d1d1d1;
@@ -69,13 +70,13 @@ const Cart = () => {
     return state.cart;
   });
   const dispatch = useDispatch();
-  console.log("Cart Data is ",datafromCart);
+  //console.log("Cart Data is ", datafromCart);
   const ProductsInCart = datafromCart.products;
   const count = datafromCart.count;
   const totalPrice = datafromCart.totalPrice;
 
   const handleRemove = (id) => {
-    console.log("Hello");
+    //console.log("Hello");
     dispatch(removeProductFromCart(id));
   };
 
