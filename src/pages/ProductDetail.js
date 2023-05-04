@@ -2,7 +2,7 @@ import React, { useState } from "react";
 import { useParams } from "react-router-dom";
 import styled from "styled-components";
 import Navbar from "../components/navbar";
-import { useLocation } from "react-router-dom";
+import { useLocation, useNavigate } from "react-router-dom";
 //import { CurrencyRupee } from "@mui/icons-material";
 import AttachMoneyIcon from "@mui/icons-material/AttachMoney";
 import { Button } from "@mui/material";
@@ -71,6 +71,7 @@ const ButtonCart = styled(Button)`
 
 const ProductDetail = () => {
   let productData = useLocation();
+  const navigate = useNavigate();
   const dispatch = useDispatch();
   productData = productData.state;
   const [qty, setQty] = useState(1);
@@ -88,9 +89,10 @@ const ProductDetail = () => {
     }
   };
 
-  const addItemToCart = () => {
-    console.log("Hello Data");
-    dispatch(addProductToCart({ ...productData, count: qty }));
+  const addItemToCart = async () => {
+    //console.log("Hello Data");
+    await dispatch(addProductToCart({ ...productData, count: qty }));
+    navigate("/cart");
   };
 
   //console.log(productData);

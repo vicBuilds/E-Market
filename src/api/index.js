@@ -11,6 +11,7 @@ export const getAllProducts = async () => {
 };
 
 export const addAProduct = async (productToBeAdded) => {
+  // console.log("Inside the APi call ", productToBeAdded);
   try {
     let returnFromApiAfterAdding = await fetch(`${ROOT_URL}`, {
       method: "POST",

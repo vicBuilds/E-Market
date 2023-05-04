@@ -4,6 +4,7 @@ import Products from "./pages/Products";
 import ProductDetail from "./pages/ProductDetail";
 import Error404 from "./pages/Error404";
 import Cart from "./pages/Cart";
+import AddProduct from "./pages/AddProduct";
 function App() {
   return (
     <div className="App">
@@ -12,6 +13,7 @@ function App() {
         <Route path="/products" element={<Products />} />
         <Route path="product/:id" element={<ProductDetail />} />
         <Route path="/cart" element={<Cart />} />
+        <Route path="/addproduct" element={<AddProduct />} />
         <Route path="*" element={<Error404 />} />
       </Routes>
     </div>

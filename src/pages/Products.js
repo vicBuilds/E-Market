@@ -11,7 +11,7 @@ const ProductDisplayContainer = styled.div`
   min-height: 100vh;
   display: flex;
   /* align-items: center; */
-  justify-content: space-between;
+  justify-content: flex-start;
   flex-wrap: wrap;
   padding: 15px;
 `;
@@ -40,7 +40,7 @@ const Products = () => {
   let productData = useSelector((state) => {
     return state.product.products;
   });
-  //console.log("hello ", productData);
+  console.log("hello ", productData);
   useEffect(() => {
     setDisplayproducts(productData);
   }, []);

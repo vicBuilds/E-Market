@@ -35,7 +35,7 @@ const Navbar = () => {
           <h3>All Products</h3>
         </Link>
         <Link
-          to={"/addProduct"}
+          to={"/addproduct"}
           style={{ textDecoration: "none", color: "white" }}
         >
           <h3>

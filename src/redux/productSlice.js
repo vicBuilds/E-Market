@@ -12,7 +12,8 @@ export const productSlice = createSlice({
       state.products = action.payload;
     },
     addProduct: (state, action) => {
-      state.products = [...state.products, action.payload];
+      console.log("I am here from action", action.payload);
+      state.products.push(action.payload);
     },
     updateAProduct: (state, action) => {
       let { id, newProductDetail } = action.payload;

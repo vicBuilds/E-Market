@@ -10,7 +10,8 @@ const Container = styled.div`
   flex-direction: column;
   justify-content: center;
   align-items: start;
-  margin: 15px;
+
+  margin: 40px;
   border: 1px solid whitesmoke;
   transition: all 0.8s ease;
   cursor: pointer;
