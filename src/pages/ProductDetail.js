@@ -1,4 +1,4 @@
-import React from "react";
+import React, { useState } from "react";
 import { useParams } from "react-router-dom";
 import styled from "styled-components";
 import Navbar from "../components/navbar";
@@ -7,6 +7,9 @@ import { useLocation } from "react-router-dom";
 import AttachMoneyIcon from "@mui/icons-material/AttachMoney";
 import { Button } from "@mui/material";
 import AddShoppingCartIcon from "@mui/icons-material/AddShoppingCart";
+import { Add, Remove } from "@mui/icons-material";
+import { useDispatch } from "react-redux";
+import { addProductToCart } from "../redux/cartSlice";
 
 const Container = styled.div`
   display: flex;
@@ -68,9 +71,27 @@ const ButtonCart = styled(Button)`
 
 const ProductDetail = () => {
   let productData = useLocation();
+  const dispatch = useDispatch();
   productData = productData.state;
+  const [qty, setQty] = useState(1);
 
   const { id, title, price, category, image, description } = productData;
+
+  const handleqty = (msg) => {
+    if (msg === "add") {
+      setQty(qty + 1);
+    } else {
+      if (qty == 1) {
+        return;
+      }
+      setQty(qty - 1);
+    }
+  };
+
+  const addItemToCart = () => {
+    console.log("Hello Data");
+    dispatch(addProductToCart({ ...productData, count: qty }));
+  };
 
   //console.log(productData);
 
@@ -93,7 +114,31 @@ const ProductDetail = () => {
             Price: <AttachMoneyIcon />
             {price}{" "}
           </ItemHeader>
-          <ButtonCart>
+          <ItemHeader
+            style={{ fontWeight: "700", color: "#647576", fontSize: "19px" }}
+          >
+            Quantity:
+            <Button
+              onClick={() => {
+                handleqty("sub");
+              }}
+            >
+              <Remove />
+            </Button>
+            {qty}
+            <Button
+              onClick={() => {
+                handleqty("add");
+              }}
+            >
+              <Add />
+            </Button>
+          </ItemHeader>
+          <ButtonCart
+            onClick={() => {
+              addItemToCart();
+            }}
+          >
             <AddShoppingCartIcon />
             ADD TO CART
           </ButtonCart>

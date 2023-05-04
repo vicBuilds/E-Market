@@ -29,6 +29,10 @@ const Select = styled.select`
   margin-left: 10px;
 `;
 
+const Label = styled.label`
+  font-weight: 800;
+`;
+
 const Option = styled.option``;
 
 const Products = () => {
@@ -86,7 +90,7 @@ const Products = () => {
       <FilterContainer>
         <Category>
           <form>
-            <label>Show </label>
+            <Label>Show </Label>
             <Select
               onChange={(e) => {
                 handleChangeInCatgory(e);
@@ -102,7 +106,7 @@ const Products = () => {
         </Category>
         <Category>
           <form>
-            <label>Sort By </label>
+            <Label>Sort By </Label>
             <Select
               onChange={(e) => {
                 handleSort(e);

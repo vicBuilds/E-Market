@@ -43,7 +43,9 @@ const Navbar = () => {
           </h3>
         </Link>
       </Logo>
-      <Avatar />
+      <Link to="/cart">
+        <Avatar />
+      </Link>
     </Container>
   );
 };

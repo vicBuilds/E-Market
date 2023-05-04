@@ -20,8 +20,6 @@ const ProductDisplayContainer = styled.div`
   padding: 15px;
 `;
 
-const FilterContainer = styled.div``;
-
 const Home = () => {
   const [loader, setLoading] = useState(false);
   const [products, setProducts] = useState(null);
@@ -51,7 +49,6 @@ const Home = () => {
       <Navbar />
 
       <ProductDisplayContainer>
-        <FilterContainer></FilterContainer>
         {/* {loader && <Loader />} */}
         {productData &&
           productData.map((product) => {
