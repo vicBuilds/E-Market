@@ -7,3 +7,12 @@ One of the app's key features is the ability to edit and add new products to the
 The app also includes a cart feature, where users can add products they are interested in purchasing. The cart provides an overview of the items added, along with the total price. Users can easily remove items from the cart, and adjust quantities as needed. Cart automatically keeps count of the items purchased and adjust the total accordingly.
 
 With seamless integration of React JS and Redux Toolkit, the app provides fast and reliable performance, ensuring a smooth shopping experience for customers.
+
+Features for Admin:
+
+## 1. Update a Product in Realtime(Price, Description, Title any thing)
+## 2. Add a New Product in Realtime
+
+Users will instantly get updates.
+
+Experience at: https://sky-mart.netlify.app/
